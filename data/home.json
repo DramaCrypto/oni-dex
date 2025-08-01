@@ -1,0 +1,221 @@
+{
+  "service": [
+    {
+      "title": "Launchpad & Fundraising",
+      "desc": "Kickstart your project with ONI's Launchpad, designed to streamline fundraising with the support of an engaged DeFi community.",
+      "icon": "bar-chart",
+      "delay": 100
+    },
+    {
+      "title": "Staking & Rewards",
+      "desc": "Grow your investments through staking in ONI Farms and Pools, enjoying competitive rewards and contributing to ecosystem liquidity.",
+      "icon": "gift",
+      "delay": 100
+    },
+    {
+      "title": "Token Creation & Security",
+      "desc": "Easily create your own tokens with ONI's automated audit feature, ensuring security and trustworthiness from day one.",
+      "icon": "shield",
+      "delay": 200
+    },
+    {
+      "title": "ONI Spheres",
+      "desc": "Earn daily % from what ONI DEX makes from all features and receive additional token bonuses, NFTs from Play 2 Earn games and more.",
+      "icon": "zap",
+      "delay": 100
+    },
+    {
+      "title": "Cross-Chain Freedom",
+      "desc": "Experience seamless asset transfers across blockchains with ONI Bridge, enhancing your project's reach and flexibility.",
+      "icon": "codepen",
+      "delay": 100
+    },
+    {
+      "title": "Social Networking Reimagined",
+      "desc": "Connect, share, and grow on ONI TALK, the social platform where the crypto world comes together to discuss, learn, and innovate.",
+      "icon": "message-circle",
+      "delay": 200
+    }
+  ],
+  "timeline": [
+    {
+      "title": "Easy Trading",
+      "desc": "Streamline DeFi trading with our user-friendly platform."
+    },
+    {
+      "title": "Enhanced Security",
+      "desc": "Your investments are safe with advanced security protocols and audits."
+    },
+    {
+      "title": "Vibrant Community",
+      "desc": "Engage with peers, gain insights, and access exclusive benefits."
+    }
+  ],
+  "pricing": [
+    {
+      "title": "SEED SALE",
+      "price": 0.00003,
+      "text": "",
+      "button": "Ended",
+      "subTitle": "300M Tokens",
+      "isActive": false,
+      "subItem": [
+        {
+          "text": "Listing Price Projection: 0.0001 BNB",
+          "isMinus": false
+        },
+        {
+          "text": "Potential ROI: 233%",
+          "isMinus": false
+        },
+        {
+          "text": "Exclusive Early Investment Opportunity",
+          "isMinus": false
+        }
+      ]
+    },
+    {
+      "title": "MAIN SALE",
+      "price": 0.00005,
+      "text": "",
+      "button": "Participate Now",
+      "subTitle": "500M Tokens",
+      "isActive": true,
+      "subItem": [
+        {
+          "text": "Listing Price Projection: 0.0001 BNB",
+          "isMinus": false
+        },
+        {
+          "text": "Potential ROI: 100%",
+          "isMinus": false
+        },
+        {
+          "text": "Substantial ROI for early adopters.",
+          "isMinus": false
+        }
+      ]
+    },
+    {
+      "title": "LAST CHANCE",
+      "price": 0.00007,
+      "text": "",
+      "button": "Soon",
+      "subTitle": "190M Tokens",
+      "isActive": false,
+      "subItem": [
+        {
+          "text": "Listing Price Projection: 0.0001 BNB",
+          "isMinus": false
+        },
+        {
+          "text": "Potential ROI: 43%",
+          "isMinus": false
+        },
+        {
+          "text": "Last opportunity before market listing.",
+          "isMinus": false
+        }
+      ]
+    },
+    {
+      "title": "Enterprise",
+      "price": 40,
+      "text": "Let's Talk",
+      "subTitle": "Forever",
+      "isActive": false,
+      "subItem": [
+        {
+          "text": "3,580,000 Words",
+          "isMinus": false
+        },
+        {
+          "text": "16+ Templates",
+          "isMinus": false
+        },
+        {
+          "text": "8+ Languages",
+          "isMinus": false
+        },
+        {
+          "text": "AI Blog generate",
+          "isMinus": false
+        },
+        {
+          "text": "Advance Editor Tool",
+          "isMinus": false
+        },
+        {
+          "text": "Consistent support",
+          "isMinus": false
+        }
+      ]
+    }
+  ],
+  "accordion": [
+    {
+      "title": "What does an audit entail, and why is it important?",
+      "desc": "An audit, especially for crypto projects, involves a thorough examination of our smart contracts and systems by independent security firms, like Cyberscope. This process identifies vulnerabilities and ensures that our contracts operate as intended, safeguarding participants' investments and reinforcing the integrity of our platform.",
+      "isExpand": false
+    },
+    {
+      "title": "How does the presale work?",
+      "desc": "Our presale is divided into three stages, each offering ONI tokens at a different price point. Early participants benefit from lower prices, with the cost increasing in each subsequent stage. Funds raised will be used to further develop the platform, ensuring a robust launch and future growth.",
+      "isExpand": false
+    },
+    {
+      "title": "What happens if I miss the presale?",
+      "desc": "If you miss the presale, you'll have the opportunity to buy tokens after the official launch, albeit at the market price. Participating in the presale offers the advantage of acquiring tokens at a lower price, so we encourage early participation.",
+      "isExpand": false
+    },
+    {
+      "title": "How will the funds raised in the presale be used?",
+      "desc": "Funds raised will be allocated to key areas such as further development of the ONI platform, liquidity provision for exchanges, marketing to broaden our reach, and operational costs to ensure smooth operations and scalability.",
+      "isExpand": false
+    },
+    {
+      "title": "How do I participate in the presale?",
+      "desc": "To join the presale, you'll need to connect your cryptocurrency wallet to our platform. This process ensures a secure and direct transaction environment. Once connected, you can easily participate in the token presale or NFT minting sales. Ensure your wallet has sufficient BNB to complete the purchase.",
+      "isExpand": false
+    },
+    {
+      "title": "What is the affiliate program, and how does it work?",
+      "desc": "Our affiliate program rewards you for referring new participants to our presale and NFT sales. As an affiliate, you'll earn a 10% commission in BNB directly to your wallet for every sale made through your referral. Each token sale and NFT sale page has its own affiliate dashboard, where you can track your earnings and manage your referrals.",
+      "isExpand": false
+    }
+  ],
+  "ambassador": [
+    {
+      "imgUrl": "/images/ambassador/taylor_musk.jpg",
+      "name": "Taylor Musk",
+      "followers": "900k+ followers ",
+      "desc": "Social Media Marketer, WEB3, Crypto",
+      "link1": "https://x.com/taylormusk7",
+      "link2": "https://x.com/TaylorMusk7/status/1796659610662719960"
+    },
+    {
+      "imgUrl": "/images/ambassador/crypto_legend.jpg",
+      "name": "Crypto Legend",
+      "followers": "1,2M followers ",
+      "desc": "Crypto Trader & Advisor x100 GEMS Hunter",
+      "link1": "https://x.com/cryptoprolegend",
+      "link2": "https://x.com/cryptoprolegend/status/1796661705361051966"
+    },
+    {
+      "imgUrl": "/images/ambassador/riccardo_bossio.jpg",
+      "name": "Riccardo Bossio",
+      "followers": "1,4M followers ",
+      "desc": "Crypto Promoter, Reviews & Marketing Campaigns",
+      "link1": "https://x.com/riccardogems",
+      "link2": "https://x.com/riccardogems/status/1796675273888239804"
+    },
+    {
+      "imgUrl": "/images/ambassador/kate_miller.jpg",
+      "name": "Kate Miller",
+      "followers": "1,2M followers ",
+      "desc": "Crypto OG since 2017 Gaming Enthusiast",
+      "link1": "https://x.com/KateMillerGems",
+      "link2": "https://x.com/KateMillerGems/status/1796661122486911388"
+    }
+  ]
+}
