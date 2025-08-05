@@ -15,11 +15,15 @@ interface Props {
 const SelectTabPanel: FC<Props> = (props) => {
   const { handleTab } = props
   const [token, setToken] = useState<ITokenItem>(tokens[0])
+  const [searchKey, setSearchKey] = useState("")
+
   return (
     <Box className='flex flex-col rounded-[40px] bg-grey-23 max-h-[calc(100%-80px)]'>
       <Box className='flex flex-col px-[16px] pt-[24px] pb-[12px] lg:p-[24px] gap-[8px]'>
         <Box className='w-full py-[6px] transition-all border-grey-27 px-[8px] border rounded-[16px] hover:border-[rgb(117,132,157)] bg-[#2e3c56]'>
           <Input
+            value={searchKey}
+            onChange={(e) => setSearchKey(e.target.value)}
             variant="unstyled"
             placeholder="Select token name..."
             w='100%'
@@ -52,7 +56,7 @@ const SelectTabPanel: FC<Props> = (props) => {
       <Box className='bg-[#202a3d] w-full border-y border-[#2e3c56] overflow-x-hidden'>
         <Box className='overflow-y-auto mr-[-24px] lg:mr-[-16px]'>
           {
-            networks.map((netowrk) => (
+            networks.filter((el) => el.name.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase())).map((netowrk) => (
               <NetworkItem key={netowrk.name} data={netowrk} />
             ))
           }

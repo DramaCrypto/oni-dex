@@ -4,13 +4,14 @@ import { Box, Text, Collapse, Tooltip, Slider } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import ExportedImage from "next-image-export-optimizer";
 
-import { CasHistorySvg, SettingSvg, ArrowDownSvg, ChevronDownSvg, EyeSvg, SwapSettingSvg, RoundedInfoSvg } from '@/components/icons'
+import { SettingSvg, ArrowDownSvg, ChevronDownSvg, EyeSvg, SwapSettingSvg, RoundedInfoSvg } from '@/components/icons'
 import SwapFromInput from './SwapFromInput'
 import SwapToInput from './SwapToInput'
 import FeeDetailLine from './FeeDetailLine'
 import SwapSettingDetail from './SwapSettingDetail'
 import TokenModal from './token-modal/TokenModal'
 import ConnectWalletModal from './connect-wallet-modal/ConnectWalletModal'
+import SettingModal from './setting-modal/SettingModal'
 
 import swapSvg from '@/assets/icons/swap.svg'
 
@@ -20,6 +21,7 @@ const SwapForm = () => {
   const [openSettings, { toggle: toggleSettings }] = useDisclosure(false)
   const [isOpenTokenModal, { open: openTokenModal, close: closeTokenModal }] = useDisclosure(false);
   const [isOpenConnectModal, { open: openConnectModal, close: closeConnectModal }] = useDisclosure(false);
+  const [isOpenSettingModal, { open: openSettingModal, close: closeSettingModal }] = useDisclosure(false);
   const [inputValue, setInputValue] = useState(0)
 
   return (
@@ -29,10 +31,9 @@ const SwapForm = () => {
           Swap
         </Text>
         <Box display='flex' className='items-center gap-1'>
-          <Box className='rounded-[16px] flex items-center justify-center h-[40px] w-[42px] hover:bg-[rgb(71,88,117)] cursor-pointer text-[#5DD39B] hover:text-[#E2EBFB]'>
-            <CasHistorySvg width={24} height={24} className='transition-all' />
-          </Box>
-          <Box className='rounded-[16px] flex items-center justify-center h-[40px] w-[42px] hover:bg-[rgb(71,88,117)] cursor-pointer text-grey hover:text-[#E2EBFB]'>
+          <Box className='rounded-[16px] flex items-center justify-center h-[40px] w-[42px] hover:bg-[rgb(71,88,117)] cursor-pointer text-grey hover:text-[#E2EBFB]'
+            onClick={openSettingModal}
+          >
             <SettingSvg width={24} height={24} className='transition-all' />
           </Box>
         </Box>
@@ -175,6 +176,7 @@ const SwapForm = () => {
       </Box>
       <TokenModal opened={isOpenTokenModal} handleClose={closeTokenModal} />
       <ConnectWalletModal opened={isOpenConnectModal} handleClose={closeConnectModal} />
+      <SettingModal opened={isOpenSettingModal} handleClose={closeSettingModal} />
     </Box>
   );
 };

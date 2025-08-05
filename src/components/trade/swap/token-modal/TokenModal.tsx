@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { Modal, Box, Text } from '@mantine/core';
 
 import SelectTabPanel from './SelectTabPanel'
@@ -14,6 +14,10 @@ const TokenModal: FC<Props> = (props) => {
 
   const { opened, handleClose } = props
   const [tab, setTab] = useState<'select' | 'manage'>('select')
+
+  useEffect(() => {
+    setTab('select')
+  }, [opened])
 
   return (
     <Modal opened={opened} onClose={handleClose} centered withCloseButton={false} size='520px'
