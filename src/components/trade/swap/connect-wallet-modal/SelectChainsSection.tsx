@@ -4,11 +4,13 @@ import { Box, Text } from '@mantine/core';
 import ChainNetworkItem from './ChainNetworkItem'
 import { INetwork } from '@/types/common'
 
-import { networks } from '@/assets/data/networks'
+import { networks } from '@/assets/data'
+
+const _networks = networks.filter((el) => el.name !== 'ALL')
 
 const SelectChainsSection = () => {
 
-  const [networkList, setNetworkList] = useState<INetwork[]>(networks)
+  const [networkList, setNetworkList] = useState<INetwork[]>(_networks)
 
   const handleToggle = (item: INetwork) => {
     setNetworkList(networkList.map((el) => el.name === item.name ? { ...el, selected: !el.selected } : el))

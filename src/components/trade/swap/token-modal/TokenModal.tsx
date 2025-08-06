@@ -4,15 +4,17 @@ import { Modal, Box, Text } from '@mantine/core';
 import SelectTabPanel from './SelectTabPanel'
 import ManageTokensTabPanel from './ManageTokensTabPanel'
 import { CloseSvg, ArrowLeftSvg } from '@/components/icons'
+import { IToken } from '@/types/common';
 
 interface Props {
   opened: boolean,
   handleClose: () => void
+  handleSelect: (token: IToken) => void
 }
 
 const TokenModal: FC<Props> = (props) => {
 
-  const { opened, handleClose } = props
+  const { opened, handleClose, handleSelect } = props
   const [tab, setTab] = useState<'select' | 'manage'>('select')
 
   useEffect(() => {
@@ -48,7 +50,7 @@ const TokenModal: FC<Props> = (props) => {
       </Box>
 
       {
-        tab === 'select' ? <SelectTabPanel handleTab={() => setTab('manage')} /> : <ManageTokensTabPanel />
+        tab === 'select' ? <SelectTabPanel handleTab={() => setTab('manage')} handleSelect={handleSelect} /> : <ManageTokensTabPanel />
       }
     </Modal>
   )

@@ -13,6 +13,8 @@ import TokenModal from './token-modal/TokenModal'
 import ConnectWalletModal from './connect-wallet-modal/ConnectWalletModal'
 import SettingModal from './setting-modal/SettingModal'
 
+import { IToken } from '@/types/common'
+import { tokens } from '@/assets/data'
 import swapSvg from '@/assets/icons/swap.svg'
 
 const SwapForm = () => {
@@ -23,6 +25,19 @@ const SwapForm = () => {
   const [isOpenConnectModal, { open: openConnectModal, close: closeConnectModal }] = useDisclosure(false);
   const [isOpenSettingModal, { open: openSettingModal, close: closeSettingModal }] = useDisclosure(false);
   const [inputValue, setInputValue] = useState(0)
+
+  const [selectedForm, setSelectedForm] = useState<'from' | 'to' | ''>('')
+  const [fromToken, setFromToken] = useState<IToken>(tokens[0])
+  const [toToken, setToToken] = useState<IToken>(tokens[0])
+
+  const handleSetToken = (token: IToken) => {
+    if (selectedForm === 'from') {
+      setFromToken(token)
+    } else {
+      setToToken(token)
+    }
+    closeTokenModal()
+  }
 
   return (
     <Box className='w-full max-w-[480px]'>
@@ -41,10 +56,19 @@ const SwapForm = () => {
 
       <Box className='flex flex-1 p-[16px] rounded-[16px] md:rounded-[24px] flex-col items-center mt-[16px] gap-[4px] bg-[rgb(35,46,66)]'>
         <Box className='relative flex flex-col gap-[4px] w-full'>
-          <SwapFromInput value={inputValue} 
+          <SwapFromInput value={inputValue}
+            token={fromToken}
             onChange={(val) => setInputValue(parseFloat(val ?? '0'))}
-            handleOpenTokenModal={openTokenModal} />
-          <SwapToInput fromValue={inputValue} handleOpenTokenModal={openTokenModal} />
+            handleOpenTokenModal={() => {
+              setSelectedForm('from')
+              openTokenModal()
+            }} />
+          <SwapToInput fromValue={inputValue}
+            token={toToken}
+            handleOpenTokenModal={() => {
+              setSelectedForm('to')
+              openTokenModal()
+            }} />
           <Box className='flex items-center justify-center absolute mt-2.5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
             <Box className='w-[36px] h-[36px] md:w-[44px] md:h-[44px] flex items-center justify-center cursor-pointer transparent bg-[rgb(42,125,250)] rounded-[12px] md:rounded-[18px] hover:filter hover:brightness-125 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-[-2px]'>
               <ArrowDownSvg width={20} height={20} className='text-white' />
@@ -174,7 +198,10 @@ const SwapForm = () => {
           </Box>
         </Box>
       </Box>
-      <TokenModal opened={isOpenTokenModal} handleClose={closeTokenModal} />
+      <TokenModal opened={isOpenTokenModal}
+        handleClose={closeTokenModal}
+        handleSelect={handleSetToken}
+      />
       <ConnectWalletModal opened={isOpenConnectModal} handleClose={closeConnectModal} />
       <SettingModal opened={isOpenSettingModal} handleClose={closeSettingModal} />
     </Box>

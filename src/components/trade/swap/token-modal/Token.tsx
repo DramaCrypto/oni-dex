@@ -3,18 +3,21 @@ import { Box, Text, Tooltip } from '@mantine/core';
 import ExportedImage from "next-image-export-optimizer";
 
 import { EtherScanSvg } from '@/components/icons'
-import { INetwork } from '@/types/common'
+import { IToken } from '@/types/common'
 
 interface Props {
-  data: INetwork
+  data: IToken
+  onClick: () => void
 }
 
 const NetworkItem: FC<Props> = (props) => {
 
-  const { data } = props
+  const { data, onClick } = props
 
   return (
-    <Box className='h-[52px] w-full cursor-pointer hover:bg-[#273855] pl-[32px] flex items-center gap-[12px]'>
+    <Box className='h-[52px] w-full cursor-pointer hover:bg-[#273855] pl-[32px] flex items-center gap-[12px]'
+      onClick={onClick}
+    >
       <Box className='relative'>
         <Box className='w-[30px] h-[30px] rounded-full transition duration-300'>
           <ExportedImage src={data.icon} width={30} height={30} alt='Network' className='rounded-full' />

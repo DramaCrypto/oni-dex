@@ -1,14 +1,6 @@
-export interface ITokenItem {
+export interface INetwork {
   icon?: string;
   name: string;
-}
-
-export interface INetwork {
-  name: string;
-  subTitle: string;
-  icon: string;
-  icon2?: string;
-  description: string;
   selected?: boolean
 }
 
@@ -17,8 +9,11 @@ export interface ITokenForm {
   value: boolean
 }
 
-export interface IChainSelect {
-  id: string;
+export interface IToken {
+  name: string;
+  subTitle: string;
   icon: string;
-  selected: boolean;
+  icon2?: string;
+  description: string;
+  selected?: boolean
 }

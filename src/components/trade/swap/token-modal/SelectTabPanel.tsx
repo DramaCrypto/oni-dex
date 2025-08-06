@@ -1,20 +1,21 @@
 import React, { FC, useState } from 'react'
 import { Box, Text, Input } from '@mantine/core';
 
-import TokenItem from './TokenItem'
-import NetworkItem from './NetworkItem'
+import Network from './Network'
+import Token from './Token'
 import { EditSvg } from '@/components/icons'
-import { ITokenItem } from '@/types/common'
-import { tokens } from '@/assets/data/tokens'
-import { networks } from '@/assets/data/networks'
+import { INetwork, IToken } from '@/types/common'
+
+import { tokens, networks } from '@/assets/data'
 
 interface Props {
   handleTab: () => void
+  handleSelect: (token: IToken) => void
 }
 
 const SelectTabPanel: FC<Props> = (props) => {
-  const { handleTab } = props
-  const [token, setToken] = useState<ITokenItem>(tokens[0])
+  const { handleTab, handleSelect } = props
+  const [network, setNetwork] = useState<INetwork>(networks[0])
   const [searchKey, setSearchKey] = useState("")
 
   return (
@@ -42,11 +43,11 @@ const SelectTabPanel: FC<Props> = (props) => {
         <Box className='border border-[#2e3c56] p-[4px] rounded-[16px] hover:border-[#75849d]'>
           <Box className='flex justify-between grid gap-2 w-full grid-cols-5'>
             {
-              tokens.map((el) => (
-                <TokenItem key={el.name}
-                  onSelect={() => setToken(el)}
+              networks.map((el) => (
+                <Network key={el.name}
+                  onSelect={() => setNetwork(el)}
                   data={el}
-                  isSelectted={el.name === token.name} />
+                  isSelectted={el.name === network.name} />
               ))
             }
           </Box>
@@ -56,8 +57,8 @@ const SelectTabPanel: FC<Props> = (props) => {
       <Box className='bg-[#202a3d] w-full border-y border-[#2e3c56] overflow-x-hidden'>
         <Box className='overflow-y-auto mr-[-24px] lg:mr-[-16px]'>
           {
-            networks.filter((el) => el.name.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase())).map((netowrk) => (
-              <NetworkItem key={netowrk.name} data={netowrk} />
+            tokens.filter((el) => el.name.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase())).map((_token) => (
+              <Token key={_token.name} data={_token} onClick={() => handleSelect(_token)} />
             ))
           }
         </Box>

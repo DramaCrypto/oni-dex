@@ -3,15 +3,15 @@ import clsx from 'clsx'
 import { Box, Text } from '@mantine/core';
 import ExportedImage from "next-image-export-optimizer";
 
-import { ITokenItem } from '@/types/common'
+import { INetwork } from '@/types/common'
 
 interface Props {
-  data: ITokenItem;
+  data: INetwork;
   isSelectted: boolean;
   onSelect: () => void;
 }
 
-const TokenItem: FC<Props> = (props) => {
+const Network: FC<Props> = (props) => {
   const { data, isSelectted, onSelect } = props
 
   const classes = clsx(
@@ -35,4 +35,4 @@ const TokenItem: FC<Props> = (props) => {
   )
 }
 
-export default TokenItem
+export default Network

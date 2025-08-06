@@ -4,17 +4,19 @@ import clsx from 'clsx';
 import { Box, Text, Input } from '@mantine/core';
 
 import TokenButton from './TokenButton'
+import { IToken } from '@/types/common'
 
 interface Props {
   className?: string
   handleOpenTokenModal: () => void
   value: number
   onChange: (val: string) => void
+  token: IToken
 }
 
 const SwapFromInput: FC<Props> = (props) => {
 
-  const { className, handleOpenTokenModal, value, onChange } = props
+  const { className, handleOpenTokenModal, value, onChange, token } = props
 
   const classes = clsx(
     'flex flex-col w-full justify-between rounded-[16px] md:rounded-[24px] md:px-[24px] pb-[12px] md:py-[16px] md:gap-[8px] border border-transparent hover:border-grey bg-[rgb(46,60,86)] transition min-h-[70px] gap-[4px] h-[100px]',
@@ -45,7 +47,7 @@ const SwapFromInput: FC<Props> = (props) => {
           />
         </Box>
         <Box className='m-[8px] md:m-0'>
-          <TokenButton onClick={handleOpenTokenModal} />
+          <TokenButton token={token} onClick={handleOpenTokenModal} />
         </Box>
       </Box>
       <Box className='flex items-center justify-between pl-[16px] md:pl-0'>
