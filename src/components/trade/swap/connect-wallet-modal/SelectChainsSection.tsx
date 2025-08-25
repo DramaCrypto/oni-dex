@@ -4,9 +4,10 @@ import { Box, Text } from '@mantine/core';
 import ChainNetworkItem from './ChainNetworkItem'
 import { INetwork } from '@/types/common'
 
-import { networks } from '@/assets/data'
+// import { networks } from '@/assets/data'
 
-const _networks = networks.filter((el) => el.name !== 'ALL')
+// const _networks = networks.filter((el) => el.name !== 'ALL')
+const _networks = []
 
 const SelectChainsSection = () => {
 

@@ -1,7 +1,14 @@
 export interface INetwork {
-  icon?: string;
+  logoURI: string;
   name: string;
-  selected?: boolean
+  selected?: boolean;
+  count: number;
+  enabledChainIds: Array<string>;
+  keywords: Array<string>;
+  supportedActions: Array<string>;
+  supportedChainIds: Array<string>;
+  url: string;
+  provider: string;
 }
 
 export interface ITokenForm {
@@ -10,10 +17,30 @@ export interface ITokenForm {
 }
 
 export interface IToken {
-  name: string;
-  subTitle: string;
-  icon: string;
-  icon2?: string;
-  description: string;
-  selected?: boolean
+  chain: string;
+  chainId: string;
+  coingeckoId: string;
+  decimals: number;
+  extensions: {
+    providerId: string;
+  };
+  identifier: string;
+  logoURI: string;
+  name?: string;
+  symbol: string;
+  ticker: string;
+  selected?: boolean;
+  address?: string;
+}
+
+export enum TransactionFeeType {
+  Normal = 'Normal',
+  Fast = 'Fast',
+  Fastest = 'Fastest'
+}
+
+export interface ITransactionSetting {
+  feeType: TransactionFeeType,
+  isExpertMode: boolean,
+  isCustomRecipient: boolean,
 }

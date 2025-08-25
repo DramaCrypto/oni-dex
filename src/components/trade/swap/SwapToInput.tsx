@@ -9,13 +9,13 @@ import { IToken } from '@/types/common'
 interface Props {
   className?: string
   handleOpenTokenModal: () => void
-  fromValue: number
+  value: number
   token: IToken
 }
 
 const SwapToInput: FC<Props> = (props) => {
 
-  const { className, handleOpenTokenModal, fromValue, token } = props
+  const { className, handleOpenTokenModal, value, token } = props
 
   const classes = clsx(
     'flex flex-col w-full justify-between rounded-[16px] md:rounded-[24px] md:px-[24px] pb-[12px] md:py-[16px] md:gap-[8px] border border-transparent hover:border-grey bg-[rgb(46,60,86)] transition min-h-[70px] gap-[4px] h-[90px]',
@@ -32,7 +32,7 @@ const SwapToInput: FC<Props> = (props) => {
             type='number'
             w='100%'
             readOnly
-            value={fromValue * 2}
+            value={value}
             sx={{
               marginLeft: -4,
               input: {

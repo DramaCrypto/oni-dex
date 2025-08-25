@@ -24,7 +24,7 @@ const ChainNetworkItem: FC<Props> = (props) => {
           <Box className="flex items-center justify-center">
             <Box className="relative flex rounded-full">
               <Box className="flex items-center justify-center rounded-full box-border overflow-hidden relative transition-all z-10 w-[31px] h-[31px]">
-                <ExportedImage alt="RUNE" className="absolute inset-0 transition-all rounded-full" src={data.icon} width={31} height={31} />
+                <ExportedImage alt="RUNE" className="absolute inset-0 transition-all rounded-full" src={data.logoURI} width={31} height={31} />
               </Box>
             </Box>
           </Box>

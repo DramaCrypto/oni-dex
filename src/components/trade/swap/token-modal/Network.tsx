@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import clsx from 'clsx'
-import { Box, Text } from '@mantine/core';
+import { Box, Text, Tooltip } from '@mantine/core';
 import ExportedImage from "next-image-export-optimizer";
 
 import { INetwork } from '@/types/common'
@@ -20,18 +20,20 @@ const Network: FC<Props> = (props) => {
   )
 
   return (
-    <Box className={classes} onClick={onSelect}>
-      {
-        data.icon && (
-          <Box className='w-[20px] h-[20px] flex items-center justify-center rounded-full'>
-            <ExportedImage src='https://storage.googleapis.com/token-list-swapkit-dev/images/arb.arb-0x912ce59144191c1204e64559fe8253a0e49e6548.png' width={20} height={20} alt='Token' className='rounded-full' />
-          </Box>
-        )
-      }
-      <Text className='font-poppins text-light font-semibold text-[11px] leading-[18px] tracking-base'>
-        {data.name}
-      </Text>
-    </Box>
+    <Tooltip label={data.name} classNames={{ tooltip: 'text-[12px]' }}>
+      <Box className={classes} onClick={onSelect}>
+        {
+          data.logoURI && (
+            <Box className='w-[20px] h-[20px] flex items-center justify-center rounded-full min-w-[20px]'>
+              <ExportedImage src={data.logoURI} width={20} height={20} alt='Token' className='rounded-full' />
+            </Box>
+          )
+        }
+        <Text className='font-poppins text-light font-semibold text-[11px] leading-[18px] tracking-base text-ellipsis overflow-hidden'>
+          {data.name}
+        </Text>
+      </Box>
+    </Tooltip>
   )
 }
 

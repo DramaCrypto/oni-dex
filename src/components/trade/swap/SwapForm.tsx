@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Box, Text, Collapse, Tooltip, Slider } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import ExportedImage from "next-image-export-optimizer";
@@ -13,8 +13,8 @@ import TokenModal from './token-modal/TokenModal'
 import ConnectWalletModal from './connect-wallet-modal/ConnectWalletModal'
 import SettingModal from './setting-modal/SettingModal'
 
-import { IToken } from '@/types/common'
-import { tokens } from '@/assets/data'
+import { IToken, ITransactionSetting, TransactionFeeType } from '@/types/common'
+import { defaultTokens } from '@/assets/data'
 import swapSvg from '@/assets/icons/swap.svg'
 
 const SwapForm = () => {
@@ -27,8 +27,17 @@ const SwapForm = () => {
   const [inputValue, setInputValue] = useState(0)
 
   const [selectedForm, setSelectedForm] = useState<'from' | 'to' | ''>('')
-  const [fromToken, setFromToken] = useState<IToken>(tokens[0])
-  const [toToken, setToToken] = useState<IToken>(tokens[0])
+  const [fromToken, setFromToken] = useState<IToken>(defaultTokens[0])
+  const [toToken, setToToken] = useState<IToken>(defaultTokens[1])
+  const [transactionSetting, setTransactionSetting] = useState<ITransactionSetting>({
+    feeType: TransactionFeeType.Normal,
+    isExpertMode: false,
+    isCustomRecipient: false
+  })
+
+  const toTokenValue = useMemo(() => {
+    return inputValue * 10
+  }, [inputValue])
 
   const handleSetToken = (token: IToken) => {
     if (selectedForm === 'from') {
@@ -37,6 +46,26 @@ const SwapForm = () => {
       setToToken(token)
     }
     closeTokenModal()
+  }
+
+  const handleReverse = () => {
+    const temp = fromToken
+    setFromToken(toToken)
+    setToToken(temp)
+  }
+
+  const handleUpdateTransactionSetting = (name: keyof ITransactionSetting, value: TransactionFeeType | boolean) => {
+    setTransactionSetting({
+      ...transactionSetting,
+      [name]: value
+    })
+  }
+
+  const handleSwap = () => {
+    console.log('From Token:', fromToken)
+    console.log('To Token:', toToken)
+    console.log('From Token Value:', inputValue)
+    console.log('Transaction setting:', transactionSetting)
   }
 
   return (
@@ -63,14 +92,16 @@ const SwapForm = () => {
               setSelectedForm('from')
               openTokenModal()
             }} />
-          <SwapToInput fromValue={inputValue}
+          <SwapToInput value={toTokenValue}
             token={toToken}
             handleOpenTokenModal={() => {
               setSelectedForm('to')
               openTokenModal()
             }} />
           <Box className='flex items-center justify-center absolute mt-2.5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-            <Box className='w-[36px] h-[36px] md:w-[44px] md:h-[44px] flex items-center justify-center cursor-pointer transparent bg-[rgb(42,125,250)] rounded-[12px] md:rounded-[18px] hover:filter hover:brightness-125 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-[-2px]'>
+            <Box className='w-[36px] h-[36px] md:w-[44px] md:h-[44px] flex items-center justify-center cursor-pointer transparent bg-[rgb(42,125,250)] rounded-[12px] md:rounded-[18px] hover:filter hover:brightness-125 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-[-2px]'
+              onClick={handleReverse}
+            >
               <ArrowDownSvg width={20} height={20} className='text-white' />
             </Box>
           </Box>
@@ -190,11 +221,17 @@ const SwapForm = () => {
           </Collapse>
         </Box>
 
-        <Box className='pt-[20px] w-full'>
+        <Box className='pt-[20px] w-full flex gap-5'>
           <Box className='w-full h-[56px] flex items-center justify-center cursor-pointer rounded-[56px] bg-gradient-to-r from-[rgb(70,178,167)] to-[rgb(51,151,242)] to-[80%] text-light font-poppins font-semibold text-[17px] tracking-[-0.01em] hover:bg-[linear-gradient(90deg,rgba(70,178,167,0.867)_0%,rgba(51,151,242,0.867)_80%)]'
             onClick={openConnectModal}
           >
             Connect Wallet
+          </Box>
+
+          <Box className='w-full h-[56px] flex items-center justify-center cursor-pointer rounded-[56px] bg-gradient-to-r from-[rgb(70,178,167)] to-[rgb(51,151,242)] to-[80%] text-light font-poppins font-semibold text-[17px] tracking-[-0.01em] hover:bg-[linear-gradient(90deg,rgba(70,178,167,0.867)_0%,rgba(51,151,242,0.867)_80%)]'
+            onClick={handleSwap}
+          >
+            Swap
           </Box>
         </Box>
       </Box>
@@ -203,7 +240,10 @@ const SwapForm = () => {
         handleSelect={handleSetToken}
       />
       <ConnectWalletModal opened={isOpenConnectModal} handleClose={closeConnectModal} />
-      <SettingModal opened={isOpenSettingModal} handleClose={closeSettingModal} />
+      <SettingModal opened={isOpenSettingModal}
+                    value={transactionSetting}
+                    handleClose={closeSettingModal}
+                    handleUpdate={handleUpdateTransactionSetting} />
     </Box>
   );
 };

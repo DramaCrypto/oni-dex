@@ -1,22 +1,21 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { Modal, Box, Tooltip } from '@mantine/core';
 import clsx from 'clsx'
 
 import SwitchInput from '@/components/trade/swap/SwitchInput'
+import { ITransactionSetting, TransactionFeeType } from '@/types/common'
 import { RoundedInfoSvg } from '@/components/icons'
 
 interface Props {
   opened: boolean,
-  handleClose: () => void
+  handleClose: () => void,
+  value: ITransactionSetting,
+  handleUpdate: (name: keyof ITransactionSetting, value: any) => void,
 }
 
 const SettingModal: FC<Props> = (props) => {
 
-  const { opened, handleClose } = props
-
-  const [feeType, setFeeType] = useState<'Normal' | 'Fast' | 'Fastest'>('Normal')
-  const [isExpertMode, setIsExpertMode] = useState<boolean>(false)
-  const [isCustomRecipient, setIsCustomRecipient] = useState<boolean>(false)
+  const { opened, handleClose, value, handleUpdate } = props
 
   return (
     <Modal opened={opened} onClose={handleClose}
@@ -48,16 +47,16 @@ const SettingModal: FC<Props> = (props) => {
 
           <div className="flex items-center w-full space-x-[8px] pb-[24px]">
             {
-              ['Normal', 'Fast', 'Fastest'].map((el) => (
+              [TransactionFeeType.Normal, TransactionFeeType.Fast, TransactionFeeType.Fastest].map((el) => (
                 <div key={el}
                   className={clsx(
                     "border border-grey-27 flex items-center justify-center rounded-[16px] text-light font-poppins h-[40px] px-[12px] text-[11px] font-bold cursor-pointer",
                     {
-                      'hover:bg-[rgba(77,186,214,0.8)] bg-green': feeType === el,
-                      'hover:bg-[rgba(39,56,85,0.2)]': feeType !== el
+                      'hover:bg-[rgba(77,186,214,0.8)] bg-green': value.feeType === el,
+                      'hover:bg-[rgba(39,56,85,0.2)]': value.feeType !== el
                     }
                   )}
-                  onClick={() => setFeeType(el as any)}
+                  onClick={() => handleUpdate('feeType', el as TransactionFeeType)}
                 >
                   {el}
                 </div>
@@ -78,7 +77,7 @@ const SettingModal: FC<Props> = (props) => {
                 </Box>
               </Tooltip>
             </div>
-            <SwitchInput value={isExpertMode} handleToggle={() => setIsExpertMode(!isExpertMode)} />
+            <SwitchInput value={value.isExpertMode} handleToggle={() => handleUpdate('isExpertMode', !value.isExpertMode)} />
           </div>
 
            <div className="flex items-center justify-between">
@@ -92,7 +91,7 @@ const SettingModal: FC<Props> = (props) => {
                 </Box>
               </Tooltip>
             </div>
-            <SwitchInput value={isCustomRecipient} handleToggle={() => setIsCustomRecipient(!isCustomRecipient)} />
+            <SwitchInput value={value.isCustomRecipient} handleToggle={() => handleUpdate('isCustomRecipient', !value.isCustomRecipient)} />
           </div>
         </div>
       </div>

@@ -20,14 +20,18 @@ const TokenButton: FC<Props> = (props) => {
       onClick={onClick}
     >
       <Box className='w-[28px] h-[28px]'>
-        <ExportedImage src={token.icon} alt='Token' width={28} height={28} />
+        {
+          token.logoURI && (
+            <ExportedImage src={token.logoURI} alt='Token' width={28} height={28} className='rounded-full' />
+          )
+        }
       </Box>
       <Box>
         <Text className='text-[rgb(226,235,251)] font-medium text-[17px] leading-[20px] tracking-[-0.01em] font-poppins uppercase'>
-          {token.name}
+          {token.ticker}
         </Text>
         <Text className='text-grey, text-[11px] tracking-[0.03em] uppercase leading-[16px] font-poppins'>
-          {token.subTitle}
+          {token.chain}
         </Text>
       </Box>
       <ChevronDownSvg width={24} height={24} className='text-[rgb(226,235,251)]' />
